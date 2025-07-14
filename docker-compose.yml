@@ -8,6 +8,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - microservices
 
   fastapi-todo-service:
     container_name: todo-api
@@ -16,11 +18,11 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mongodb
-    ports:
-      - 8000:8000
     environment:
       ATLAS_URI: mongodb://root:password@mongodb:27017
       DB_NAME: todoapi
+    networks:
+      - microservices
 
   next-todo-app:
     container_name: todo-client
@@ -29,6 +31,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    networks:
+      - client-host
 
   api-gateway:
     container_name: nginx
@@ -39,6 +43,14 @@ services:
       - fastapi-todo-service
     ports:
       - 80:80
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge   # Represents a place to host all your microservices, such as Azure AKS, Azure Container Apps, Google Cloud Run, GKE, or EKS.
+  client-host:
+    driver: bridge # represents a different place to host your frontend, like Vercel, Hostinger, or AWS Amplify.
 
 volumes:
   mongodb_data:
