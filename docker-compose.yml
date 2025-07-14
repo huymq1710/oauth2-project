@@ -66,6 +66,7 @@ services:
       - --http-address=0.0.0.0:4180
       - --upstream=http://todo-api:8000
       - --skip-provider-button=true
+      - --skip-auth-preflight=true
     networks:
       - microservices
 
