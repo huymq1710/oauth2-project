@@ -49,7 +49,10 @@ export default function Home() {
     return (
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 bg-slate-50 space-y-2">
             {/* add logout button here */}
-
+            <div className="flex justify-end">
+                <a href="http://localhost/oauth2/sign_out?rd=http%3A%2F%2Flocalhost%3A3000%2F"><p
+                    className="text-blue-500 underline transition cursor-pointer">Logout</p></a>
+            </div>
             {/* logout button end */}
             <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-slate-600 my-8">📝 Simple Todo
                 Service</h1>
