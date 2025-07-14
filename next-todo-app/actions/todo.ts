@@ -21,6 +21,7 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
         // create a todo
         const response = await fetch(API_URL, {
             method: 'post',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -41,7 +42,9 @@ export const createTodo = async (todo: z.infer<typeof CreateTodo>) => {
 export const getTodos = async () => {
     try {
         // get todos
-        const response = await fetch(API_URL)
+        const response = await fetch(API_URL, {
+            credentials: 'include'
+        })
         if (response.status == 200) {
             const result = await response.json()
             return result;
@@ -55,7 +58,8 @@ export const deleteTodo = async (id: string) => {
     try {
         // delete todo
         const response = await fetch(`${API_URL}${id}`, {
-            method: 'delete'
+            method: 'delete',
+            credentials: 'include'
         })
         if (response.status == 204) {
             return true;
@@ -70,7 +74,8 @@ export const completeTodo = async (id: string) => {
     try {
         // complete todos
         const response = await fetch(`${API_URL}${id}/complete`, {
-            method: 'post'
+            method: 'post',
+            credentials: 'include'
         })
         if (response.status == 200) {
             return true;
@@ -85,7 +90,8 @@ export const incompleteTodo = async (id: string) => {
     try {
         // withdraw todos
         const response = await fetch(`${API_URL}${id}/incomplete`, {
-            method: 'post'
+            method: 'post',
+            credentials: 'include'
         })
         if (response.status == 200) {
             return true;
@@ -114,6 +120,7 @@ export const updateTodo = async (todo: z.infer<typeof Todo>, id: string) => {
         // update todos
         const response = await fetch(`${API_URL}${id}`, {
             method: 'put',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },

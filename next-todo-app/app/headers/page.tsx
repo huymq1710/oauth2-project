@@ -7,7 +7,9 @@ export default function Page() {
     useEffect(() => {
         const getHeaders = async () => {
             try {
-                const response = await fetch('http://localhost/headers') // Use when having nginx reverse proxy
+                const response = await fetch('http://localhost/headers', {
+                    credentials: "include"
+                }) // Use when having nginx reverse proxy
                 const result = await response.json()
                 const data = JSON.stringify(result, null, 2)
                 setHeaders(data)
