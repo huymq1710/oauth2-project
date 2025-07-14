@@ -14,7 +14,6 @@ Go to the [Google Cloud Console](https://console.cloud.google.com/auth/clients/5
 ### Final container diagram
 ![image.png](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*6WAdak685CEI4qoaWLAPow.png)
 
-## Auth flow
 ### Auth flow
 In the diagram below, we explain how a protected API route request is handled through the OAuth2 proxy flow.
 The user starts by requesting the `/headers` API endpoint.
